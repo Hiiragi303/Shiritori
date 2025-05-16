@@ -7,6 +7,7 @@ kuromoji.builder({ dicPath: './dict/' }).build(function (err, tokenizer) {
 
   const input = "明日はコンビニでおにぎりを買う";
   const tokens = tokenizer.tokenize(input);
+  console.log(tokens);
 
   let result = tokens.map(token => {
     // 読みがあるときだけカタカナに（そのまま読みとして使える）
