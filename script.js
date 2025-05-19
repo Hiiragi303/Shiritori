@@ -14,6 +14,7 @@ async function init() {
         // 何か処理
         main.style.display = "block";
         document.getElementById("start").addEventListener("click", start);
+        document.getElementById("record").addEventListener("click", record);
 
     } catch (e) {
         console.error("初期化失敗: ", e);
@@ -22,9 +23,7 @@ async function init() {
 
 init();
 
-/**
- * スタートボタンが押されたときに呼び出される関数
- */
+// スタートボタンが呼び出されたときに実行する関数
 function start() {
     isStarted = true;
     document.getElementById("start").style.display = "none";
@@ -32,4 +31,9 @@ function start() {
     speech("aaaa");
     setVolume(1);
     speech("しりとり");
+}
+
+// レコードボタンが呼び出されたときに実行する関数
+function record() {
+    // do something
 }
