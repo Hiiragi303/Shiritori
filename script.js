@@ -1,8 +1,9 @@
-import { initTokenizer, convertToKatakana} from "./conversion_process.js";
+import { initTokenizer, convertToKatakana, loadNornDict } from "./conversion_process.js";
 
 async function init() {
     try {
         await initTokenizer();
+        await loadNornDict();
 
         // 何か処理
     } catch (e) {
