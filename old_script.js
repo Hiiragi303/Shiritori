@@ -3,16 +3,9 @@ SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
 const recognition = new SpeechRecognition();
 
 
-let voice = null;        
+ 
 
- /**
-* 発話の設定
-*/
-const uttr = new SpeechSynthesisUtterance();  // 発話用インスタンス生成
-uttr.lang = "ja-JP";  // 言語設定
-uttr.rate = 1;  // 速度
-uttr.pitch = 1;  // 高さ
-uttr.volume = 1;  // 音量
+
 
 
 // スタートしてるか
@@ -107,11 +100,7 @@ function record() {
     recognition.start();
 }
 
-// 発話させる
-function speech(text) {
-    uttr.text = text;
-    speechSynthesis.speak(uttr);
-}
+
 
 
 
