@@ -1,26 +1,27 @@
 import { convertToKatakana } from "./conversion_process.js";
 
-// 録音用インスタンス生成
-
-
-
-export async function record() {
-    let text = null;
-    try {
-        const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-        if (!SpeechRecognition) throw new Error("音声認識に対応していません");
-        text = await new Promise((resolve) => {
+export function record() {
+    const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+        return new Promise((resolve, reject) => {
             const recognition = new SpeechRecognition();
+
             recognition.onresult = (event) => {
-                if (event.error === "no-speech") console.log("no sound"); 
                 let _text = event.results[0][0].transcript;
                 _text = convertToKatakana(_text);
+                console.log("認識した語: " + _text);
+                recognition.stop();
                 resolve(_text);
             };
+
+            recognition.onerror = (event) => {
+                console.log("認識エラー ", event.error);
+                reject(event.error);
+            };
+
+            recognition.onend = () => {
+                console.log("音声認識終了");
+            }
+
             recognition.start();
         });
-    } catch (e) {
-        console.error(e);
-    }
-    return text;
 }

@@ -1,3 +1,5 @@
+import { Result, inMemo } from "./textManager.js";
+
 const DICT_PATH = "./dict";
 const CSV_PATH = "./norn_dict";
 let tokenizer = null;
@@ -48,20 +50,27 @@ export function convertToKatakana(text) {
     return tokens.map(token => token.reading || token.surface_form).join("");
 }
 
-// cpuが答える
-export function reply(startChar,memo) {
-        if (!tokenizer) {
-            console.error("tokenizerが初期化されていません。");
-            return "";
-        } else if (!dict) {
-            console.error("dictが初期化されていません。");
-            return "";
-        }
+// 辞書から単語を探す
+export function decideWord(startChar) {
+    if (!tokenizer) {
+        console.error("tokenizerが初期化されていません。");
+        return Result.GAME_OVER;
+    } else if (!dict) {
+        console.error("dictが初期化されていません。");
+        return Result.GAME_OVER;
+    }
+    const words = [];
+    dict.forEach(word => {
+        if (!word) return;
 
-        const wordsStartWith = dict.filter(word => {
-            const tokens = tokenizer.tokenize(word);
-            const token = tokens[0];
-            return token.pos == "名詞" && token.reading.startsWith(startChar) && !token.reading.endsWith("ン") && !memo.includes(token.reading);
-        });
-        return wordsStartWith[0];
+        const tokens = tokenizer.tokenize(word);
+        const token = tokens[0];
+        if (!token.pos || !token.reading) return;
+        if (token.pos == "名詞" && token.reading.startsWith(startChar) && !token.reading.endsWith("ン") && !inMemo(token.reading)) {
+        //    console.log(token.reading);
+            words.push(token.reading);
+        };
+    });
+    console.log(words);
+    return words[Math.floor(Math.random() * words.length)];
 }

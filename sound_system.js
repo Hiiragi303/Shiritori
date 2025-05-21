@@ -31,8 +31,11 @@ export async function loadVoices() {
 // 発話させる
 export function speech(text) {
     if (!voice) return;
-    uttr.text = text;
-    speechSynthesis.speak(uttr);
+    return new Promise((resolve) => {
+        uttr.onend = resolve;
+        uttr.text = text;
+        speechSynthesis.speak(uttr);
+    })
 }
 
 // volumeをセット
