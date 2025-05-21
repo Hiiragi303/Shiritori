@@ -4,8 +4,10 @@ export function record() {
     const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
         return new Promise((resolve, reject) => {
             const recognition = new SpeechRecognition();
+            let isOk = false;
 
             recognition.onresult = (event) => {
+                isOk = true;
                 let _text = event.results[0][0].transcript;
                 _text = convertToKatakana(_text);
                 console.log("認識した語: " + _text);
@@ -19,7 +21,11 @@ export function record() {
             };
 
             recognition.onend = () => {
-                console.log("音声認識終了");
+                if (!isOk) recognition.start();
+                else {
+                    isOk = false;
+                    console.log("音声認識終了");
+                }
             }
 
             recognition.start();
