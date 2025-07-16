@@ -3,6 +3,18 @@ let text = null;
 const memo = ["シリトリ"];
 const history = [];
 const forbiddenChar = "ン";
+const specialCharacters = {
+    "ー": 0,
+    "ッ": "ツ",
+    "ャ": "ヤ",
+    "ュ": "ユ",
+    "ョ": "ヨ",
+    "ァ": "ア",
+    "ィ": "イ",
+    "ゥ": "ウ",
+    "ェ": "エ",
+    "ォ": "オ",
+}
 
 export const Result = {
     SUCCESSS: "SUCCESS",
@@ -15,12 +27,18 @@ export function setText(input) {
 }
 
 export function getLastCharOfPreText() {
+    console.log(lastChar(preText))
     return lastChar(preText);
 }
 
 export function lastChar(_text) {
     if (!_text) return undefined;
-    return _text[_text.length - 1];
+    let lastC = _text[_text.length - 1];
+    if (lastC in specialCharacters) {
+        if (lastC == "ー") return _text[_text.length - 2];
+        return specialCharacters[lastC]
+    }
+    return lastC;
 }
 
 export function check() {

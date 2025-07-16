@@ -17,7 +17,6 @@ export function record() {
 
             recognition.onerror = (event) => {
                 console.log("認識エラー ", event.error);
-                reject(event.error);
             };
 
             recognition.onend = () => {

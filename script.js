@@ -53,7 +53,6 @@ async function computerTurn(text) {
     switch (result) {
         case Result.SUCCESSS:    
             update();
-            console.log("a");
             await speech(nextWord);
             await userTurn();
             break;
