@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --theme-color: rgb(93, 217, 233);
+}
+
+body {
+    color: #111;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/**
+ヘッダー系
+*/
+header {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.menu-btn {
+    /* 丸いあたり判定 */
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: none;
+    background: transparent;
+    color: #111;
+    cursor: pointer;
+
+    transition: background-color 150ms ease;
+}
+
+.menu-btn svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    fill: currentColor;
+    pointer-events: none;
+}
+
+/* ホバーしたとき */
+.menu-btn:hover {
+    background-color: rgba(93, 217, 233, 0.6);
+}
+
+/* クリック中 */
+.menu-btn:active {
+    background-color: var(--theme-color);
+}
+
+/* タブで移動したとき */
+.menu-btn:focus-visible {
+  outline: 2px solid var(--theme-color);    
+  outline-offset: 2px;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.title a {
+    text-decoration: none;  /*下線無し*/
+    color: inherit;  /*bodyのcolorを受け継ぐ*/
+    cursor: pointer;
+
+    transition: color 150ms ease;
+}
+
+/* ホバーしたとき */
+.title a:hover {
+    color: var(--theme-color);
+}
+
+/**
+中身のスタイル
+*/
+.content {
+    flex: 1;
+    display: flex;
+}
+
+/**
+サイドバー系
+*/
+.sidebar {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    align-items: center;
+    border: 1px solid #111;
+}
+
+.sidebar-title {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    background-color: var(--theme-color);
+    border-bottom: 1px solid #111;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-item {
+    margin: 4px 0;
+}
+
+main {
+    flex: 1;
+    border: 1px solid gray;
+}

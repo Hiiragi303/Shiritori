@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>しりとり</title>
-    </head>
-    <body>
-        <div id="main-content" style="display: none;">
-            <h1>しりとり</h1>
-            <button id="start">開始</button>
-            <h2 id="nextPrompt"></h2>
-            <ul id="history"></ul>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>しりとり</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container" id="main-content" style="display: none;">
+        <header>
+            <button class="menu-btn" aria-label="メニュー">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"
+                    focusable="false">
+                    <path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"></path>
+                </svg>
+            </button>
+            <h1 class="title">
+                <a href="https://github.com/Hiiragi303/Shiritori" target="_blank" rel="noopener noreferrer">
+                    しりとり
+                </a>
+            </h1>
+        </header>
+        <div class="content">
+            <aside class="sidebar">
+                <h2 class="sidebar-title">履歴</h2>
+                <ul id="sidebar-list" class="sidebar-list">
+                    <li class="sidebar-item">しりとり -> りんご</li>
+                    <li class="sidebar-item">しりとり -> りんご</li>
+                </ul>
+            </aside>
+            <main>
+                <button id="start">開始</button>
+            </main>
         </div>
-        <script src="kuromoji.js"></script>
-        <script type= "module" src="script.js"></script>
-    </body>
+    </div>
+    <script src="kuromoji.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
 </html>
