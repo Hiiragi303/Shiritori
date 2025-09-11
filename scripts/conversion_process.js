@@ -1,7 +1,7 @@
 import { Result, inMemo } from "./textManager.js";
 
-const DICT_PATH = "./dict";
-const CSV_PATH = "./norn_dict";
+const DICT_PATH = "../dict";
+const CSV_PATH = "../norn_dict";
 let tokenizer = null;
 let dict = null;
 
