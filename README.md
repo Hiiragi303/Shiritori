@@ -6,6 +6,14 @@
 「人と話すようなしりとり体験」を目指しました。  
 ローカル環境で動作し、サーバー通信なしで完結します。
 
+### 待望のUIの画像(10/22更新)
+これがないばかりに選考時の書類に落ちていると思います...
+UI作り直してjsは一回切っています。
+動画は...お待ちください...
+![UIプレビュー](./img/ui_preview.png)
+
+---
+
 ### :loud_sound:お知らせ
 現在、[別リポジトリ](https://github.com/Hiiragi303/shiritori_fullstack)でフルスタック化に挑戦しています。  
 ChatGPTを用いて学び、小さく実装しつつ、最終的にはこの音声しりとりの機能を取り入れる予定です。
@@ -21,10 +29,10 @@ ChatGPTを用いて学び、小さく実装しつつ、最終的にはこの音�
 ---
 
 ## 🛠 使用技術
-- 言語: JavaScript / HTML / CSS
+- 言語: JavaScript / HTML / ~~CSS~~ TailWind CSS(**new**)
 - ライブラリ: SpeechRecognition API, SpeechSynthesis API, kuromoji.js
 - データ: MeCab名詞辞書（CSV）
-- 実行環境: ブラウザ（Chrome推奨）
+- 実行環境: ブラウザ（Chrome推奨）, Windows11, Mac(M2チップ)
 - インフラ: ローカルのみ（バックエンドなし）
 
 ---
@@ -85,3 +93,4 @@ GitHubはWindowsとMac両方でコーディングするために利用しまし�
 夜中にニヤけながら作ってました。
 最初作っていた当時は、npmなんて微塵も知りませんでした。（白目）
 [Next.js化](https://github.com/Hiiragi303/shiritori_fullstack)がんばるぞー、です。
+（10/22追記）動画ないと落ちますね...成長途中すぎて...
