@@ -5,40 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>しりとり</title>
-    <link rel="stylesheet" href="./styles/normalize.css">
-    <link rel="stylesheet" href="./styles/style.css">
+    <!-- CDNからTailWindCSSを読み込む -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <div class="container" id="main-content" style="display: none;">
-        <header>
-            <button class="menu-btn" aria-label="メニュー">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"
-                    focusable="false">
-                    <path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"></path>
-                </svg>
-            </button>
-            <h1 class="title">
-                <a href="https://github.com/Hiiragi303/Shiritori" target="_blank" rel="noopener noreferrer">
-                    しりとり
-                </a>
-            </h1>
-        </header>
-        <div class="content">
-            <aside class="sidebar">
-                <h2 class="sidebar-title">履歴</h2>
-                <ul id="sidebar-list" class="sidebar-list">
-                    <li class="sidebar-item">しりとり -> りんご</li>
-                    <li class="sidebar-item">しりとり -> りんご</li>
-                </ul>
-            </aside>
-            <main>
-                <button id="start">開始</button>
-            </main>
+<!-- 順番: レイアウト/位置、形/枠線、色、装飾、動き -->
+
+<!-- flex-col: 縦に並べた上で、位置や比率を自由にするため -->
+<!-- min-h-screen: 画面の最小サイズをスクリーンいっぱいにする -->
+<body class="flex flex-col items-center min-h-screen bg-gray-50">
+
+    <!-- ヘッダー -->
+    <!-- w-full: 幅を親要素いっぱいにする -->
+    <!-- justify-*: flexの主軸方向の配置を決める -->
+    <header class="flex justify-between items-center w-full px-4 py-2 bg-white shadow-sm">
+        <h1 class="text-2xl font-bold">音声しりとり</h1>
+        <!-- opacity: 透明度 -->
+        <a href="https://github.com/Hiiragi303/Shiritori" target="_blank" class="p-2 hover:opacity-75">
+            <img src="./img/hiiragi_profile.png" alt="hiiragi's profile image" class="w-11 h-11 rounded-full border-2 border-gray-300"/>
+        </a>
+    </header>
+
+    <!-- メイン -->
+    <!-- flex-grow: 空いたスペースをどれだけ伸ばして埋めるか(画面いっぱい) -->
+    <main class="flex flex-row flex-grow items-center justify-center w-full gap-6">
+        <!-- メインカード -->
+        <!-- gap-4: 上下の要素の間に均等な余白をつける -->
+        <!-- w-11/12: 親要素の幅の11/12(91.6%)を使う -->
+        <!-- max-w-2xl: 最大幅の上限 -->
+        <div class="flex flex-col gap-4 w-6/12 max-w-xl h-[80vh] p-6 rounded-2xl bg-white shadow-md">
+            <!-- ターン表示 -->
+            <div class="text-center text-lg font-semibold pb-2 border-b border-gray-200">あなたの番</div>
+            <!-- チャット欄 -->
+            <!-- auto-rows-max: 各行は中身の高さだけにする -->
+            <!-- content-start: 余った縦スペースは下側に寄せる(行を伸ばさない) -->
+            <!-- overflow-y-auto: チャットが多くなっても中だけスクロールできるように -->
+            <div class="grid auto-rows-max content-start gap-3 h-[60vh] overflow-y-auto p-3 border border border-gray-300 rounded-xl">
+                <!-- チャットカード -->
+                <!-- プログラム -->
+                <div class="justify-self-start flex items-start gap-2">
+                    <div class="w-9 h-9 rounded-full bg-gray-300"></div>
+                    <div class="max-w-[70%] px-4 py-2 rounded-2xl rounded-tl-none bg-gray-100 text-gray-800">
+                            しりとり
+                    </div>
+                </div>
+                
+                <!-- ユーザー -->
+                <div class="justify-self-end flex items-start gap-2">
+                    <div class="max-w-[70%] px-4 py-2 rounded-2xl rounded-tr-none bg-green-100 text-gray-800">
+                        りんご
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-green-300"></div>
+                </div>
+
+                <!-- プログラム -->
+                <div class="justify-self-start flex items-start gap-2">
+                    <div class="w-9 h-9 rounded-full bg-gray-300"></div>
+                    <div class="max-w-[70%] px-4 py-2 rounded-2xl rounded-tl-none bg-gray-100 text-gray-800">
+                            ごりら
+                    </div>
+                </div>
+            </div>
+            <!-- ボタン欄 -->
+            <div class="flex justify-center gap-4">
+                <button class="px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-green-600 transition">開始</button>
+                <button class="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition">参りました</button>
+            </div>
         </div>
-    </div>
-    <script src="./scripts/kuromoji.js"></script>
-    <script type="module" src="./scripts/script.js"></script>
+
+        <!-- サイドバー -->
+        <aside class="w-1/5 max-w-xs h-[80vh] overflow-y-auto p-4 rounded-2xl bg-white shadow-md">
+            <h2 class="text-lg font-semibold pb-2 mb-3 border-b border-gray-200">既出ワード</h2>
+            <ul class="list-disc list-inside space-y-1 text-gray-700">
+                <li>しりとり</li>
+                <li>りんご</li>
+                <li>ごりら</li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- スクリプト読み込み -->
+    <!-- <script src="./scripts/kuromoji.js"></script>
+    <script type="module" src="./scripts/script.js"></script> -->
 </body>
 
 </html>
