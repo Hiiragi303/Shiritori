@@ -35,58 +35,47 @@
         <!-- max-w-2xl: 最大幅の上限 -->
         <div class="flex flex-col gap-4 w-6/12 max-w-xl h-[80vh] p-6 rounded-2xl bg-white shadow-md">
             <!-- ターン表示 -->
-            <div class="text-center text-lg font-semibold pb-2 border-b border-gray-200">あなたの番</div>
+            <div class="text-center text-lg font-semibold pb-2 border-b border-gray-200" id="turn">コンピューターの番</div>
             <!-- チャット欄 -->
             <!-- auto-rows-max: 各行は中身の高さだけにする -->
             <!-- content-start: 余った縦スペースは下側に寄せる(行を伸ばさない) -->
             <!-- overflow-y-auto: チャットが多くなっても中だけスクロールできるように -->
-            <div class="grid auto-rows-max content-start gap-3 h-[60vh] overflow-y-auto p-3 border border border-gray-300 rounded-xl">
+            <div class="grid auto-rows-max content-start gap-3 h-[60vh] overflow-y-auto p-3 border border border-gray-300 rounded-xl" id="chatArea">
                 <!-- チャットカード -->
-                <!-- プログラム -->
-                <div class="justify-self-start flex items-start gap-2">
-                    <div class="w-9 h-9 rounded-full bg-gray-300"></div>
-                    <div class="max-w-[70%] px-4 py-2 rounded-2xl rounded-tl-none bg-gray-100 text-gray-800">
-                            しりとり
-                    </div>
-                </div>
-                
-                <!-- ユーザー -->
-                <div class="justify-self-end flex items-start gap-2">
-                    <div class="max-w-[70%] px-4 py-2 rounded-2xl rounded-tr-none bg-green-100 text-gray-800">
-                        りんご
-                    </div>
-                    <div class="w-9 h-9 rounded-full bg-green-300"></div>
-                </div>
-
-                <!-- プログラム -->
-                <div class="justify-self-start flex items-start gap-2">
-                    <div class="w-9 h-9 rounded-full bg-gray-300"></div>
-                    <div class="max-w-[70%] px-4 py-2 rounded-2xl rounded-tl-none bg-gray-100 text-gray-800">
-                            ごりら
-                    </div>
-                </div>
+                <!-- JS側で追加 -->
             </div>
             <!-- ボタン欄 -->
             <div class="flex justify-center gap-4">
-                <button class="px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-green-600 transition">開始</button>
-                <button class="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition">参りました</button>
+                <button class="px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-green-600 transition" id="startBtn">開始</button>
+                <!-- <button class="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition" id="stopBtn">■</button> -->
+                <button class="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition" id="endBtn">終了</button>
+            </div>
+            <div class="flex justify-center">
+                <!-- 検出された語 -->
+                <div class="h-8 w-60 pt-1 text-center rounded-lg border border-gray-600 bg-gray-200 text-black shadow-sm" id="recogedWord">
+                    <!-- JS側で処理 -->
+                    検出された語
+                </div>
             </div>
         </div>
 
         <!-- サイドバー -->
         <aside class="w-1/5 max-w-xs h-[80vh] overflow-y-auto p-4 rounded-2xl bg-white shadow-md">
             <h2 class="text-lg font-semibold pb-2 mb-3 border-b border-gray-200">既出ワード</h2>
-            <ul class="list-disc list-inside space-y-1 text-gray-700">
-                <li>しりとり</li>
-                <li>りんご</li>
-                <li>ごりら</li>
-            </ul>
+            <ul class="list-disc list-inside space-y-1 text-gray-700" id="usedWords"><!-- JS側で追加 --></ul>
         </aside>
+        <!-- 警告 -->
+        <div class="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-2 pointer-events-none" id="toastRoot"><!-- JS側で追加 --></div>
+
+        <!-- ゲーム終了結果 -->
+        <div class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden" id="result-overlay">
+            <!-- JS側で追加 -->
+        </div>
     </main>
 
     <!-- スクリプト読み込み -->
-    <!-- <script src="./scripts/kuromoji.js"></script>
-    <script type="module" src="./scripts/script.js"></script> -->
+    <script src="./scripts/lib/kuromoji.js"></script>
+    <script type="module" src="./scripts//controller/controller.js"></script>
 </body>
 
 </html>
